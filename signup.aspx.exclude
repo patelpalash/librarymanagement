@@ -1,0 +1,10 @@
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="signup.aspx.vb" Inherits="signup" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <form id="form1" runat="server">
+        <h1>hello world</h1>
+    </form>
+</asp:Content>
+
