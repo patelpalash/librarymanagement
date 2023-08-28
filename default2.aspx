@@ -4,7 +4,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-          <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <!-- this is carousel code brother-->
+      <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -16,9 +17,9 @@
             <div class="carousel-caption d-none d-md-block ">
               <h2>Welcome to icoder</h2>
               <p>technology News,Development and Trends</p>
-              <div class="button btn btn-danger">Technology</div>
-              <div class="button btn btn-primary">Webdevelopment</div>
-              <div class="button btn btn-success">Tech fun</div>
+            <a href="bookstock.aspx"> <div class="button btn btn-danger">Book Stock</div></a> 
+            <a href="booksales.aspx"><div class="button btn btn-primary">Book Salse</div></a>  
+            <a href="bookstock.aspx"><div class="button btn btn-success"> Book</div></a>  
             </div>
           </div>
           <div class="carousel-item">
@@ -51,8 +52,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
-
 
 
         <div class="container my-4">
@@ -104,7 +103,6 @@
                     </div>
                   </div>
                 </div>
-
 
 
 </asp:Content>
