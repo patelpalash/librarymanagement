@@ -1,56 +1,89 @@
-﻿
-Imports System.Data.SqlClient
-Imports System.Data
-Imports System.Runtime.InteropServices
+﻿Imports System.Data.OleDb
+Imports System.ServiceModel.Configuration
 
 Partial Class bookstock
     Inherits System.Web.UI.Page
-    Public Sub LoadData()
-        Dim db As New Dbconn
-        Dim cm As New SqlCommand("select * from bookstocktbl where UserId=@UserId")
-        cm.Parameters.AddWithValue("@userId", Session("UserId"))
-        GridView1.DataSource = db.GetTable(cm)
-        GridView1.DataBind()
-        GridView1.DataSource = db.GetTable(cm)
-        GridView1.DataBind()
-    End Sub
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Dim cn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=B:\2 year 4 sem\external exam\librarymanagement\bookStock.accdb")
 
-        If Session("UserId") Is Nothing Then
-            Response.Redirect("loginpage.aspx")
-        Else
-            If Not IsPostBack Then
-                lblUser.Text = "Welcome " + Session("UserName")
-                LoadData()
-            End If
-        End If
-    End Sub
-    Protected Sub btninsert_Click(sender As Object, e As EventArgs) Handles btninsert.Click
-        Dim db As New Dbconn
-        Dim cmd As New SqlCommand("insert into bookstocktbl values(@bookid,@bookname,@bookdis,@quantity)")
-        cmd.Parameters.AddWithValue("@bookid", txtbookid.Text)
-        cmd.Parameters.AddWithValue("@bookname", txtbookname.Text)
-        cmd.Parameters.AddWithValue("@bookdis", txtdistributor.Text)
-        cmd.Parameters.AddWithValue("@quantity", txtquantity.Text)
-        db.ExeCommand(cmd)
+
+
+    Protected Sub btninsert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btninsert.Click
+        Try
+            Dim str As String
+            Dim ans As Integer
+            str = "Insert into bookStock values(" & textboxbookid.Text & ",'" & TextBoxbookname.Text & "','" & TextBoxDistributor.Text & "'," & TextBoxQuantity.Text & ") "
+            cn.Open()
+            Dim cmd As New OleDbCommand(str, cn)
+            ans = cmd.ExecuteNonQuery
+
+
+            MsgBox("Record Inserted Successfully : " & ans)
+            GridView1.DataBind()
+            cn.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
+    Protected Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        textboxbookid.Text = ""
+        TextBoxbookname.Text = ""
+        TextBoxDistributor.Text = ""
+        TextBoxQuantity.Text = ""
+
+    End Sub
+
+    Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Try
+            Dim str As String
+            Dim ans As Integer
+            str = "Delete from bookStock where book_id =" & textboxbookid.Text & "  "
+            Dim cmd As New OleDbCommand(str, cn)
+            cn.Open()
+            ans = cmd.ExecuteNonQuery
+            cn.Close()
+            MsgBox("No of Records are : " & ans)
+            GridView1.DataBind()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 
     Protected Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        Dim db As New Dbconn
-        Dim cmd As New SqlCommand
-        cmd = New SqlCommand("update bookstocktbl set bookname=@bookname,bookdis=@bookdis,quantity=@quantity where bookid=@bookid")
-        cmd.Parameters.AddWithValue("@bookid", txtbookid.Text)
-        cmd.Parameters.AddWithValue("@bookname", txtbookname.Text)
-        cmd.Parameters.AddWithValue("@bookdis", txtdistributor.Text)
-        cmd.Parameters.AddWithValue("@quantity", txtquantity.Text)
-        cmd.Parameters.AddWithValue("@UserId", Session("UserId"))
-        db.ExeCommand(cmd)
+        Try
+            Dim str As String
+            Dim ans As Integer
+            str = "Update bookStock set book_name='" & TextBoxbookname.Text & "',Distributor='" & TextBoxDistributor.Text & "',Quantity=" & TextBoxQuantity.Text & " where book_id =" & textboxbookid.Text & "   "
+            Dim cmd As New OleDbCommand(str, cn)
+            cn.Open()
+            ans = cmd.ExecuteNonQuery
+            MsgBox("Record Updated Successfully : " & ans)
+            GridView1.DataBind()
+            cn.Close()
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
 
+    Protected Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        Try
+            cn.Open()
+            Dim str As String
+            str = "Select * from bookStock where book_id=" & textboxbookid.Text & " "
+            Dim cmd As New OleDbCommand(str, cn)
+            Dim dr As OleDbDataReader
+            dr = cmd.ExecuteReader
+            While dr.Read
+                TextBoxbookname.Text = dr.Item(1).ToString
+                TextBoxDistributor.Text = dr.Item(2).ToString
+                TextBoxQuantity.Text = dr.Item(3).ToString
 
-    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
-
+            End While
+            GridView1.DataBind()
+            cn.Close()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
     End Sub
-
 End Class
