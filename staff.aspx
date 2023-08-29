@@ -1,11 +1,11 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="bookSales.aspx.vb" Inherits="bookSales" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="staff.aspx.vb" Inherits="staff" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <style type="text/css">
         .auto-style1 {
@@ -51,13 +51,12 @@
 <body>
     <form id="form1" runat="server">
 
-
-        <br />
+            <br />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtcustomerName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmployeeId" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label1" runat="server" Text="Customer Name"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Employee id"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnInsert" runat="server" Text="Insert" />
 &nbsp;&nbsp;&nbsp;
@@ -71,37 +70,38 @@
         <br />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtcustomerMoNo" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label2" runat="server" Text="Customer Mo.No"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Employee Name"></asp:Label>
         <br />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtbookName" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmployeePostion" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label3" runat="server" Text="Book Name"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="Emlpoyee Position"></asp:Label>
         <br />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtbookPrice" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmployeeSalary" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label4" runat="server" Text="Book Price"></asp:Label>
+        <asp:Label ID="Label4" runat="server" Text="Employee Salary"></asp:Label>
         <br />
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="txtbookQuatity" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmployeeMoNo" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label5" runat="server" Text="Book Quantity"></asp:Label>
+        <asp:Label ID="Label5" runat="server" Text="Employee Mo.No"></asp:Label>
         <br />
         <br />
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataSourceID="staffDatabase" DataKeyNames="employee_id">
             <Columns>
-                <asp:BoundField DataField="Customer_Name" HeaderText="Customer_Name" SortExpression="Customer_Name" />
-                <asp:BoundField DataField="Customer_MoNo" HeaderText="Customer_MoNo" SortExpression="Customer_MoNo" />
-                <asp:BoundField DataField="Book_Name" HeaderText="Book_Name" SortExpression="Book_Name" />
-                <asp:BoundField DataField="Book_Price" HeaderText="Book_Price" SortExpression="Book_Price" />
-                <asp:BoundField DataField="Book_quantity" HeaderText="Book_quantity" SortExpression="Book_quantity" />
+                <asp:BoundField DataField="employee_id" HeaderText="employee_id" SortExpression="employee_id" ReadOnly="True" />
+                <asp:BoundField DataField="employee_name" HeaderText="employee_name" SortExpression="employee_name" />
+                <asp:BoundField DataField="employee_position" HeaderText="employee_position" SortExpression="employee_position" />
+                <asp:BoundField DataField="employee_salary" HeaderText="employee_salary" SortExpression="employee_salary" />
+                <asp:BoundField DataField="employee_MoNo" HeaderText="employee_MoNo" SortExpression="employee_MoNo" />
             </Columns>
         </asp:GridView>
+            <asp:SqlDataSource ID="staffDatabase" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString4 %>" ProviderName="<%$ ConnectionStrings:ConnectionString4.ProviderName %>" SelectCommand="SELECT [employee_id], [employee_name], [employee_position], [employee_salary], [employee_MoNo] FROM [staf]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString3 %>" ProviderName="<%$ ConnectionStrings:ConnectionString3.ProviderName %>" SelectCommand="SELECT [Customer_ Name] AS Customer_Name, [Customer_MoNo], [Book_Name], [Book_Price], [Book_quantity] FROM [bookSells]"></asp:SqlDataSource>
         <div class="auto-style1">
         </div>
@@ -109,5 +109,6 @@
 
 
     </form>
+
 </body>
 </html>

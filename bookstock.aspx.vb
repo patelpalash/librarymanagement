@@ -7,7 +7,7 @@ Partial Class bookstock
 
 
 
-    Protected Sub btninsert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btninsert.Click
+    Protected Sub btninsert_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnInsert.Click
         Try
             Dim str As String
             Dim ans As Integer
@@ -25,7 +25,7 @@ Partial Class bookstock
         End Try
     End Sub
 
-    Protected Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+    Protected Sub btnClear_Click(sender As Object, e As EventArgs) Handles Button5.Click
         textboxbookid.Text = ""
         TextBoxbookname.Text = ""
         TextBoxDistributor.Text = ""
@@ -86,4 +86,5 @@ Partial Class bookstock
             MsgBox(ex.ToString)
         End Try
     End Sub
+
 End Class
